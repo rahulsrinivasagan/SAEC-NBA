@@ -1,128 +1,748 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>College Homepage</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Tailwind CSS Plugins -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#1e40af',
-            secondary: '#facc15',
-          },
-        },
-      },
-    };
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA at SA Engineering College</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #f8f9fa;
+            --accent-color: #17408B;
+            --text-color: #333333;
+            --light-text: #666666;
+            --border-color: #e0e0e0;
+            --nba-orange: #FF8C00;
+            --nba-red: #C9082A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--primary-color);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+       /* Updated Contact Bar Styles */
+.contact-bar {
+    background-color: var(--nba-orange);
+    padding: 10px 0;
+    font-size: 0.9rem;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px; /* Added gap between items */
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.contact-item i {
+    margin-right: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effects */
+.contact-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.contact-item:hover i {
+    color: var(--nba-red);
+    transform: scale(1.1);
+}
+
+/* Active State */
+.contact-item:active {
+    transform: translateY(0);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .contact-item {
+        padding: 5px;
+    }
+}
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            height: 50px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-left: 10px;
+        }
+
+       
+
+        /* Navigation Button - Always visible */
+        .nav-toggle {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-left: 20px;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .nav-toggle:hover {
+            color: var(--nba-orange);
+        }
+
+        /* Navigation Panel */
+        .nav-panel {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--primary-color);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            padding: 80px 2rem 2rem;
+            overflow-y: auto;
+        }
+
+        .nav-panel.active {
+            right: 0;
+        }
+
+        .nav-panel ul {
+            list-style: none;
+        }
+
+        .nav-panel ul li {
+            margin-bottom: 1rem;
+        }
+
+        .nav-panel ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.8rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-panel ul li a:hover {
+            color: white;
+            background-color: var(--nba-orange);
+            transform: translateX(5px);
+        }
+
+        /* Navigation Overlay */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: url('campus.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--nba-orange);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Horizontal Sections */
+        .sections-container {
+            padding: 60px 0;
+            background-color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--light-text);
+            font-size: 1.1rem;
+        }
+
+        .sections-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px 0;
+            scroll-snap-type: x mandatory;
+        }
+
+        .sections-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .sections-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .sections-scroll::-webkit-scrollbar-thumb {
+            background: var(--nba-orange);
+            border-radius: 10px;
+        }
+
+        .section-card {
+            min-width: 300px;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            scroll-snap-align: start;
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .section-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-number {
+            width: 60px;
+            height: 60px;
+            background-color: var(--nba-orange);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .section-card h3 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .section-card p {
+            color: var(--light-text);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .section-card .btn {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--nba-orange);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--nba-orange);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--nba-orange);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #444;
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .contact-container {
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-card {
+                min-width: 280px;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
-<body class="font-sans text-gray-800">
-
-  <!-- Header -->
-  <header class="bg-white shadow-md">
-    <div class="flex items-center justify-between py-4">
-
-      
-      <!-- Logo aligned to left -->
-      <a href="#" class="flex items-center space-x-3">
-        <img src="Hero1.png" alt="College Logo" class="h-10 w-auto">
-        
-      </a>
-  
-      <!-- Navigation (center or right depending on layout) -->
-      <button class="text-primary focus:outline-none " aria-label="Menu">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2"
-             viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-        
-  
-      <!-- Mobile Menu Icon -->
-      <button class="md:hidden text-primary focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-             viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-  
+<body>
+    <!-- Updated Contact Bar -->
+<div class="contact-bar">
+    <div class="contact-container">
+        <a href="tel:04426801999" class="contact-item">
+            <i class="fas fa-phone"></i> (044) 2680 1999
+        </a>
+        <a href="mailto:saec@saec.ac.in" class="contact-item">
+            <i class="fas fa-envelope"></i> nba@saec.ac.in
+        </a>
+        <a href="https://www.google.com/maps/place/S.A.+Engineering+college/@13.0663298,80.1111821,17z/data=!4m6!3m5!1s0x3a5261f03d683eef:0x435901811125ddfb!8m2!3d13.0663298!4d80.1111821!16s%2Fm%2F0h95zph?entry=ttu&g_ep=EgoyMDI1MDczMC4wIKXMDSoASAFQAw%3D%3D" class="contact-item" target="_blank">
+            <i class="fas fa-map-marker-alt"></i> SA Engineering College, Chennai
+        </a>
     </div>
-  </header>
-  
-  
+</div>
 
-  <!-- Hero Section -->
-  <section class="bg-cover bg-center h-[500px]" style="background-image: url('campus.jpg');">
-    <div class="bg-black bg-opacity-50 h-full flex items-center justify-center text-center text-white">
-      <div>
-        
-        <p class="text-lg mb-6">Empowering students for a brighter future</p>
-        <a href="#about" class="bg-yellow-500 px-6 py-3 rounded-full hover:bg-yellow-600">Explore More</a>
-      </div>
-    </div>
-  </section>
-  
-  
-  
-
-  <!-- About Section -->
-  <section id="about" class="py-20">
-    <div class="container mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
-      <img src="https://source.unsplash.com/600x400/?college,students" alt="About"
-           class="rounded-xl shadow-md">
-      <div>
-        <h3 class="text-3xl font-bold text-primary mb-4">About Us</h3>
-        <p class="text-gray-700 mb-4">
-          MyCollege is committed to providing high-quality education and fostering innovation. We
-          aim to create an inclusive and vibrant environment for students to grow academically and personally.
-        </p>
-        <a href="#" class="text-primary underline">Learn more</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features / Courses -->
-  <section id="courses" class="bg-gray-100 py-20">
-    <div class="container mx-auto px-6 text-center">
-      <h3 class="text-3xl font-bold text-primary mb-10">Popular Courses</h3>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h4 class="text-xl font-semibold mb-2">Computer Science</h4>
-          <p class="text-gray-600">Learn programming, AI, and more from expert faculty.</p>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="Hero2.png" alt="SAEC Logo">
+                
+            </div>
+            
+            
+                
+                <!-- Navigation Toggle Button - Always visible -->
+                <button class="nav-toggle" id="navToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h4 class="text-xl font-semibold mb-2">Business Management</h4>
-          <p class="text-gray-600">Develop leadership skills and real-world business insights.</p>
+    </header>
+
+    <!-- Navigation Panel -->
+    <div class="nav-panel" id="navPanel">
+        <ul>
+            <li><a href="#sections">All Sections</a></li>
+            <li><a href="section1.html">Section 1</a></li>
+            <li><a href="section2.html">Section 2</a></li>
+            <li><a href="section3.html">Section 3</a></li>
+            <li><a href="section4.html">Section 4</a></li>
+            <li><a href="section5.html">Section 5</a></li>
+            <li><a href="section6.html">Section 6</a></li>
+            <li><a href="section7.html">Section 7</a></li>
+            <li><a href="section8.html">Section 8</a></li>
+            <li><a href="section9.html">Section 9</a></li>
+            <li><a href="section10.html">Section 10</a></li>
+        </ul>
+    </div>
+
+    <!-- Navigation Overlay -->
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to SAEC</h1>
+            <p>Join our community at S.A. Engineering College</p>
+            <a href="#sections" class="btn">Explore Sections</a>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
-          <h4 class="text-xl font-semibold mb-2">Engineering</h4>
-          <p class="text-gray-600">Hands-on learning with advanced labs and industry projects.</p>
+    </section>
+
+    <!-- Horizontal Sections -->
+    <section class="sections-container" id="sections">
+        <div class="container">
+            <div class="section-title">
+                <h2>NBA Sections</h2>
+                <p>Explore the different aspects of NBA Program</p>
+            </div>
+            
+            <div class="sections-scroll">
+                <!-- Section 1 -->
+                <div class="section-card">
+                    <div class="section-number">1</div>
+                    <h3></h3>
+                    <p></p>
+                    <a href="section1.html" class="btn">Learn More</a>
+                </div>
+                
+                <!-- Section 2 -->
+                <div class="section-card">
+                    <div class="section-number">2</div>
+                    <h3></h3>
+                    <p></p>
+                    <a href="section2.html" class="btn">Learn More</a>
+                </div>
+                
+                <!-- Section 3 -->
+                <div class="section-card">
+                    <div class="section-number">3</div>
+                    <h3></h3>
+                    <p></p>
+                    <a href="section3.html" class="btn">Learn More</a>
+                </div>
+                
+                <!-- Section 4 -->
+                <div class="section-card">
+                    <div class="section-number">4</div>
+                    <h3></h3>
+                    <p></p>
+                    <a href="section4.html" class="btn">Learn More</a>
+                </div>
+                
+                <!-- Section 5 -->
+                <div class="section-card">
+                    <div class="section-number">5</div>
+                    <h3></h3>
+                    <p></p>
+                    <a href="section5.html" class="btn">Learn More</a>
+                </div>
+                
+                <!-- Section 6 -->
+                <div class="section-card">
+                    <div class="section-number">6</div>
+                    <h3></h3>
+                    <p></p>
+                    <a href="section6.html" class="btn">Learn More</a>
+                </div>
+                
+                <!-- Section 7 -->
+                <div class="section-card">
+                    <div class="section-number">7</div>
+                    <h3></h3>
+                    <p></p>
+                    <a href="section7.html" class="btn">Learn More</a>
+                </div>
+                
+                <!-- Section 8 -->
+                <div class="section-card">
+                    <div class="section-number">8</div>
+                    <h3></h3>
+                    <p></p>
+                    <a href="section8.html" class="btn">Learn More</a>
+                </div>
+                
+                <!-- Section 9 -->
+                <div class="section-card">
+                    <div class="section-number">9</div>
+                    <h3></h3>
+                    <p></p>
+                    <a href="section9.html" class="btn">Learn More</a>
+                </div>
+                
+                <!-- Section 10 -->
+                <div class="section-card">
+                    <div class="section-number">10</div>
+                    <h3></h3>
+                    <p></p>
+                    <a href="section10.html" class="btn">Learn More</a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="py-20">
-    <div class="container mx-auto px-6 text-center">
-      <h3 class="text-3xl font-bold text-primary mb-4">Contact Us</h3>
-      <p class="mb-6 text-gray-600">Have questions? Reach out to our admissions team today.</p>
-      <a href="mailto:admissions@mycollege.edu"
-         class="bg-primary text-white px-6 py-3 rounded-full hover:bg-blue-700 transition">Email Us</a>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>SAEC</h3>
+                    <p></p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        
+                        <li><a href="section1.html">Section 1</a></li>
+                        <li><a href="section2.html">Section 2</a></li>
+                        <li><a href="section3.html">Section 3</a></li>
+                        <li><a href="section4.html">Section 4</a></li>
+                        <li><a href="section5.html">Section 5</a></li>
+                        
+                
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3></h3>
+                    <ul class="footer-links">
+                        <li><a href="section6.html">Section 6</a></li>
+                        <li><a href="section7.html">Section 7</a></li>
+                        <li><a href="section8.html">Section 8</a></li>
+                        <li><a href="section9.html">Section 9</a></li>
+                        <li><a href="section10.html">Section 10</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="contact-bar">
+    
+        <a href="tel:04426801999" class="contact-item">
+            <i class="fas fa-phone"></i> (044) 2680 1999
+        </a>
+        <a href="mailto:saec@saec.ac.in" class="contact-item">
+            <i class="fas fa-envelope"></i> nba@saec.ac.in
+        </a>
+        <a href="https://www.google.com/maps/place/S.A.+Engineering+college/@13.0663298,80.1111821,17z/data=!4m6!3m5!1s0x3a5261f03d683eef:0x435901811125ddfb!8m2!3d13.0663298!4d80.1111821!16s%2Fm%2F0h95zph?entry=ttu&g_ep=EgoyMDI1MDczMC4wIKXMDSoASAFQAw%3D%3D" class="contact-item" target="_blank">
+            <i class="fas fa-map-marker-alt"></i> SA Engineering College, Chennai
+        </a>
     </div>
-  </section>
+</div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 NBA at SA Engineering College. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-  <!-- Footer -->
-  <footer class="bg-white border-t mt-10 py-6">
-    <div class="container mx-auto text-center text-gray-600 text-sm">
-      &copy; 2025 MyCollege. All rights reserved.
-    </div>
-  </footer>
-
+    <script>
+        // Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navPanel = document.getElementById('navPanel');
+        const navOverlay = document.getElementById('navOverlay');
+        
+        function toggleNavigation() {
+            navPanel.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        }
+        
+        navToggle.addEventListener('click', toggleNavigation);
+        navOverlay.addEventListener('click', toggleNavigation);
+        
+        // Close mobile nav when clicking a link
+        const navLinks = document.querySelectorAll('.nav-panel a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', toggleNavigation);
+        });
+        
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.section-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
 </body>
 </html>
