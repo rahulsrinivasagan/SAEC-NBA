@@ -213,7 +213,7 @@
             visibility: visible;
         }
 
-        /* Hero Section */
+        /* Hero CRITERIA */
         .hero {
             height: 80vh;
             background: url('campus.jpg') center/cover;
@@ -268,8 +268,8 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        /* Horizontal Sections */
-        .sections-container {
+        /* Horizontal CRITERIAs */
+        .CRITERIAs-container {
             padding: 60px 0;
             background-color: var(--secondary-color);
         }
@@ -280,23 +280,23 @@
             padding: 0 20px;
         }
 
-        .section-title {
+        .CRITERIA-title {
             text-align: center;
             margin-bottom: 40px;
         }
 
-        .section-title h2 {
+        .CRITERIA-title h2 {
             font-size: 2.5rem;
             color: var(--accent-color);
             margin-bottom: 15px;
         }
 
-        .section-title p {
+        .CRITERIA-title p {
             color: var(--light-text);
             font-size: 1.1rem;
         }
 
-        .sections-scroll {
+        .CRITERIAs-scroll {
             display: flex;
             overflow-x: auto;
             gap: 20px;
@@ -304,21 +304,21 @@
             scroll-snap-type: x mandatory;
         }
 
-        .sections-scroll::-webkit-scrollbar {
+        .CRITERIAs-scroll::-webkit-scrollbar {
             height: 8px;
         }
 
-        .sections-scroll::-webkit-scrollbar-track {
+        .CRITERIAs-scroll::-webkit-scrollbar-track {
             background: #f1f1f1;
             border-radius: 10px;
         }
 
-        .sections-scroll::-webkit-scrollbar-thumb {
+        .CRITERIAs-scroll::-webkit-scrollbar-thumb {
             background: var(--nba-orange);
             border-radius: 10px;
         }
 
-        .section-card {
+        .CRITERIA-card {
             min-width: 300px;
             background: white;
             border-radius: 10px;
@@ -330,17 +330,17 @@
             transform: translateY(20px);
         }
 
-        .section-card.animate {
+        .CRITERIA-card.animate {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .section-card:hover {
+        .CRITERIA-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
-        .section-number {
+        .CRITERIA-number {
             width: 60px;
             height: 60px;
             background-color: var(--nba-orange);
@@ -354,20 +354,20 @@
             margin: 0 auto 20px;
         }
 
-        .section-card h3 {
+        .CRITERIA-card h3 {
             font-size: 1.5rem;
             color: var(--accent-color);
             margin-bottom: 15px;
             text-align: center;
         }
 
-        .section-card p {
+        .CRITERIA-card p {
             color: var(--light-text);
             margin-bottom: 20px;
             text-align: center;
         }
 
-        .section-card .btn {
+        .CRITERIA-card .btn {
             display: block;
             width: fit-content;
             margin: 0 auto;
@@ -478,7 +478,7 @@
                 font-size: 1rem;
             }
             
-            .section-card {
+            .CRITERIA-card {
                 min-width: 280px;
             }
             
@@ -526,123 +526,59 @@
     <!-- Navigation Panel -->
     <div class="nav-panel" id="navPanel">
         <ul>
-            <li><a href="#sections">All Sections</a></li>
-            <li><a href="section1.html">Section 1</a></li>
-            <li><a href="section2.html">Section 2</a></li>
-            <li><a href="section3.html">Section 3</a></li>
-            <li><a href="section4.html">Section 4</a></li>
-            <li><a href="section5.html">Section 5</a></li>
-            <li><a href="section6.html">Section 6</a></li>
-            <li><a href="section7.html">Section 7</a></li>
-            <li><a href="section8.html">Section 8</a></li>
-            <li><a href="section9.html">Section 9</a></li>
-            <li><a href="section10.html">Section 10</a></li>
+            
+            <li><a href="CRITERIA1.html">CRITERIA 1</a></li>
+            <li><a href="CRITERIA2.html">CRITERIA 2</a></li>
+            <li><a href="CRITERIA3.html">CRITERIA 3</a></li>
+            <li><a href="CRITERIA4.html">CRITERIA 4</a></li>
+            <li><a href="CRITERIA5.html">CRITERIA 5</a></li>
+            <li><a href="CRITERIA6.html">CRITERIA 6</a></li>
+            <li><a href="CRITERIA7.html">CRITERIA 7</a></li>
+            <li><a href="CRITERIA8.html">CRITERIA 8</a></li>
+            <li><a href="CRITERIA9.html">CRITERIA 9</a></li>
+            <li><a href="CRITERIA10.html">CRITERIA 10</a></li>
         </ul>
     </div>
 
     <!-- Navigation Overlay -->
     <div class="nav-overlay" id="navOverlay"></div>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Hero CRITERIA -->
+    <CRITERIA class="hero">
         <div class="hero-content">
             <h1>Welcome to SAEC</h1>
             <p>Join our community at S.A. Engineering College</p>
-            <a href="#sections" class="btn">Explore Sections</a>
+            <a href="#CRITERIA" class="btn">Explore Criterias</a>
         </div>
-    </section>
+    </CRITERIA>
+    <BR>
 
-    <!-- Horizontal Sections -->
-    <section class="sections-container" id="sections">
+    <!-- Horizontal CRITERIAs -->
+    <CRITERIA class="CRITERIAs-container" id="CRITERIAs">
         <div class="container">
-            <div class="section-title">
-                <h2>NBA Sections</h2>
+            <div class="CRITERIA-title">
+                <h2>NBA CRITERIAS</h2>
                 <p>Explore the different aspects of NBA Program</p>
             </div>
             
-            <div class="sections-scroll">
-                <!-- Section 1 -->
-                <div class="section-card">
-                    <div class="section-number">1</div>
-                    <h3></h3>
-                    <p></p>
-                    <a href="section1.html" class="btn">Learn More</a>
-                </div>
+            <!-- This div will contain the dynamic content -->
+            <div id="CRITERIA-content">
+                <!-- Default content (CRITERIA 1) will be loaded here -->
+                <CENTER><h2>CRITERIA 1</h2>
+                <h2>VISION, MISSION & PEO's</h2>
+                </CENTER>
+                <br>
+                <h2>NAME OF FACULTY :</h2>
+                <h4>Mr.A.MANI</h4>
+                <h4>Dr.V.SATHYA PREIYA(CURRICULUM)</h3>
+                <h4>Ms.S.ARUMAISHINEY</h3>
                 
-                <!-- Section 2 -->
-                <div class="section-card">
-                    <div class="section-number">2</div>
-                    <h3></h3>
-                    <p></p>
-                    <a href="section2.html" class="btn">Learn More</a>
-                </div>
                 
-                <!-- Section 3 -->
-                <div class="section-card">
-                    <div class="section-number">3</div>
-                    <h3></h3>
-                    <p></p>
-                    <a href="section3.html" class="btn">Learn More</a>
-                </div>
-                
-                <!-- Section 4 -->
-                <div class="section-card">
-                    <div class="section-number">4</div>
-                    <h3></h3>
-                    <p></p>
-                    <a href="section4.html" class="btn">Learn More</a>
-                </div>
-                
-                <!-- Section 5 -->
-                <div class="section-card">
-                    <div class="section-number">5</div>
-                    <h3></h3>
-                    <p></p>
-                    <a href="section5.html" class="btn">Learn More</a>
-                </div>
-                
-                <!-- Section 6 -->
-                <div class="section-card">
-                    <div class="section-number">6</div>
-                    <h3></h3>
-                    <p></p>
-                    <a href="section6.html" class="btn">Learn More</a>
-                </div>
-                
-                <!-- Section 7 -->
-                <div class="section-card">
-                    <div class="section-number">7</div>
-                    <h3></h3>
-                    <p></p>
-                    <a href="section7.html" class="btn">Learn More</a>
-                </div>
-                
-                <!-- Section 8 -->
-                <div class="section-card">
-                    <div class="section-number">8</div>
-                    <h3></h3>
-                    <p></p>
-                    <a href="section8.html" class="btn">Learn More</a>
-                </div>
-                
-                <!-- Section 9 -->
-                <div class="section-card">
-                    <div class="section-number">9</div>
-                    <h3></h3>
-                    <p></p>
-                    <a href="section9.html" class="btn">Learn More</a>
-                </div>
-                
-                <!-- Section 10 -->
-                <div class="section-card">
-                    <div class="section-number">10</div>
-                    <h3></h3>
-                    <p></p>
-                    <a href="section10.html" class="btn">Learn More</a>
-                </div>
             </div>
+
         </div>
-    </section>
+    </CRITERIA>
+
 
     <!-- Footer -->
     <footer>
@@ -663,11 +599,11 @@
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         
-                        <li><a href="section1.html">Section 1</a></li>
-                        <li><a href="section2.html">Section 2</a></li>
-                        <li><a href="section3.html">Section 3</a></li>
-                        <li><a href="section4.html">Section 4</a></li>
-                        <li><a href="section5.html">Section 5</a></li>
+                        <li><a href="CRITERIA1.html">CRITERIA 1</a></li>
+                        <li><a href="CRITERIA2.html">CRITERIA 2</a></li>
+                        <li><a href="CRITERIA3.html">CRITERIA 3</a></li>
+                        <li><a href="CRITERIA4.html">CRITERIA 4</a></li>
+                        <li><a href="CRITERIA5.html">CRITERIA 5</a></li>
                         
                 
                     </ul>
@@ -676,11 +612,11 @@
                 <div class="footer-col">
                     <h3></h3>
                     <ul class="footer-links">
-                        <li><a href="section6.html">Section 6</a></li>
-                        <li><a href="section7.html">Section 7</a></li>
-                        <li><a href="section8.html">Section 8</a></li>
-                        <li><a href="section9.html">Section 9</a></li>
-                        <li><a href="section10.html">Section 10</a></li>
+                        <li><a href="CRITERIA6.html">CRITERIA 6</a></li>
+                        <li><a href="CRITERIA7.html">CRITERIA 7</a></li>
+                        <li><a href="CRITERIA8.html">CRITERIA 8</a></li>
+                        <li><a href="CRITERIA9.html">CRITERIA 9</a></li>
+                        <li><a href="CRITERIA10.html">CRITERIA 10</a></li>
                     </ul>
                 </div>
                 
@@ -692,7 +628,7 @@
             <i class="fas fa-phone"></i> (044) 2680 1999
         </a>
         <a href="mailto:saec@saec.ac.in" class="contact-item">
-            <i class="fas fa-envelope"></i> nba@saec.ac.in
+            <i class="fas fa-envelope"></i> saec@saec.ac.in
         </a>
         <a href="https://www.google.com/maps/place/S.A.+Engineering+college/@13.0663298,80.1111821,17z/data=!4m6!3m5!1s0x3a5261f03d683eef:0x435901811125ddfb!8m2!3d13.0663298!4d80.1111821!16s%2Fm%2F0h95zph?entry=ttu&g_ep=EgoyMDI1MDczMC4wIKXMDSoASAFQAw%3D%3D" class="contact-item" target="_blank">
             <i class="fas fa-map-marker-alt"></i> SA Engineering College, Chennai
@@ -707,7 +643,7 @@
     </footer>
 
     <script>
-        // Navigation Toggle
+        // Navigation Toggle (keep existing code)
         const navToggle = document.getElementById('navToggle');
         const navPanel = document.getElementById('navPanel');
         const navOverlay = document.getElementById('navOverlay');
@@ -721,15 +657,63 @@
         navToggle.addEventListener('click', toggleNavigation);
         navOverlay.addEventListener('click', toggleNavigation);
         
-        // Close mobile nav when clicking a link
-        const navLinks = document.querySelectorAll('.nav-panel a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', toggleNavigation);
-        });
+        // Define the default CRITERIA 1 content
+        const defaultCriteria1Content = `
+            <CENTER><h2>CRITERIA 1</h2>
+            <h2>VISION, MISSION & PEO's</h2>
+            </CENTER>
+            <br>
+            <h2>NAME OF FACULTY :</h2>
+            <h4>Mr.A.MANI</h4>
+            <h4>Dr.V.SATHYA PREIYA(CURRICULUM)</h4>
+            <h4>Ms.S.ARUMAISHINEY</h4>
+        `;
+
+        // CRITERIA content loading function
+        function loadCRITERIA(CRITERIANumber) {
+            const CRITERIAContent = document.getElementById('CRITERIA-content');
+            
+            // For CRITERIA 1, load the default content
+            if (CRITERIANumber === '1') {
+                CRITERIAContent.innerHTML = defaultCriteria1Content;
+            } 
+            // For other CRITERIAs, show just the number (you can expand this)
+            else {
+                CRITERIAContent.innerHTML = `<CENTER><h2>CRITERIA ${CRITERIANumber}</h2></CENTER>`;
+            }
+            
+            // Scroll to the CRITERIAs area
+            document.getElementById('CRITERIAs').scrollIntoView({ behavior: 'smooth' });
+        }
         
-        // Scroll animations
+        // Close mobile nav when clicking a link and load the CRITERIA
+        const navLinks = document.querySelectorAll('.nav-panel a, .footer-links a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Prevent default link behavior
+                e.preventDefault();
+                
+                // Get CRITERIA number from link href
+                const href = this.getAttribute('href');
+                if (href.includes('CRITERIA')) {
+                    const CRITERIANumber = href.match(/\d+/)[0];
+                    loadCRITERIA(CRITERIANumber);
+                }
+                
+                // Close the mobile navigation if it's open
+                if (navPanel.classList.contains('active')) {
+                    toggleNavigation();
+                }
+            });
+        });
+
+        // Load CRITERIA 1 by default when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.section-card');
+            // Set the default CRITERIA 1 content
+            document.getElementById('CRITERIA-content').innerHTML = defaultCriteria1Content;
+            
+            // [Keep your existing scroll animations code]
+            const cards = document.querySelectorAll('.CRITERIA-card');
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
