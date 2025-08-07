@@ -734,11 +734,11 @@
                 <div class="footer-col">
                     <h3></h3>
                     <ul class="footer-links">
-                        <li><a href="CRITERIA6.html">CRITERIA 6</a></li>
-                        <li><a href="CRITERIA7.html">CRITERIA 7</a></li>
-                        <li><a href="CRITERIA8.html">CRITERIA 8</a></li>
-                        <li><a href="CRITERIA9.html">CRITERIA 9</a></li>
-                        <li><a href="CRITERIA10.html">CRITERIA 10</a></li>
+                        <li><a href="index.html">CRITERIA 6</a></li>
+                        <li><a href="index.html">CRITERIA 7</a></li>
+                        <li><a href="index.html">CRITERIA 8</a></li>
+                        <li><a href="index.html">CRITERIA 9</a></li>
+                        <li><a href="index.html">CRITERIA 10</a></li>
                     </ul>
                 </div>
                 
@@ -766,18 +766,18 @@
 
     <script>
         // Navigation Toggle (keep existing code)
-         const navPanel = document.getElementById('navPanel');
+        const navToggle = document.getElementById('navToggle');
+        const navPanel = document.getElementById('navPanel');
         const navOverlay = document.getElementById('navOverlay');
-
+        
         function toggleNavigation() {
             navPanel.classList.toggle('active');
             navOverlay.classList.toggle('active');
             document.body.classList.toggle('no-scroll');
         }
-
+        
         navToggle.addEventListener('click', toggleNavigation);
         navOverlay.addEventListener('click', toggleNavigation);
-    
         
         // Define the default CRITERIA 1 content
         const defaultCriteria1Content = `
@@ -801,7 +801,7 @@
             } 
             // For other CRITERIAs, show just the number (you can expand this)
             else {
-                CRITERIAContent.innerHTML = <CENTER><h2>CRITERIA ${CRITERIANumber}</h2></CENTER>;
+                CRITERIAContent.innerHTML = `<CENTER><h2>CRITERIA ${CRITERIANumber}</h2></CENTER>`;
             }
             
             // Scroll to the CRITERIAs area
