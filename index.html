@@ -1,0 +1,2580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA - S.A. Engineering College</title>
+    <link rel="icon" href="assets/images.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #f8f9fa;
+            --accent-color: #17408B;
+            --text-color: #333333;
+            --light-text: #666666;
+            --border-color: #e0e0e0;
+            --nba-orange: #FF8C00;
+            --nba-red: #C9082A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--primary-color);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Contact Bar Styles */
+        .contact-bar {
+            background-color: var(--nba-orange);
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item i {
+            margin-right: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .contact-item:hover i {
+            color: var(--nba-red);
+            transform: scale(1.1);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            height: 50px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-left: 10px;
+        }
+
+        /* Navigation Button */
+        .nav-toggle {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-left: 20px;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .nav-toggle:hover {
+            color: var(--nba-orange);
+        }
+
+        /* Navigation Panel */
+        .nav-panel {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--primary-color);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            padding: 80px 2rem 2rem;
+            overflow-y: auto;
+        }
+
+        .nav-panel.active {
+            right: 0;
+        }
+
+        .nav-panel ul {
+            list-style: none;
+        }
+
+        .nav-panel ul li {
+            margin-bottom: 1rem;
+        }
+
+        .nav-panel ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.8rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-panel ul li a:hover {
+            color: white;
+            background-color: var(--nba-orange);
+            transform: translateX(5px);
+        }
+
+        /* Navigation Overlay */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: url('campus.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            margin-top: 0; /* Add this line */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--nba-orange);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background-color: var(--accent-color);
+        }
+
+        /* Computer Science NBA Section */
+        .cse-nba-section {
+            padding: 60px 0;
+            background-color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--light-text);
+            font-size: 1.1rem;
+        }
+
+        .resource-category {
+            margin-bottom: 50px;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .resource-category h3 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--nba-orange);
+        }
+
+        .resource-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--nba-orange);
+        }
+
+        .resource-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .resource-item h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .resource-item p {
+            color: var(--light-text);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .resource-link {
+            display: inline-block;
+            color: var(--nba-orange);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .resource-link:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        .resource-link i {
+            margin-right: 5px;
+        }
+
+        /* Criteria Sections */
+        .criteria-container {
+            padding: 60px 0;
+            background-color: var(--secondary-color);
+            display: none;
+        }
+
+        .criteria-container.active {
+            display: block;
+        }
+
+        .criteria-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .criteria-title h2 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .criteria-title p {
+            color: var(--light-text);
+            font-size: 1.1rem;
+        }
+
+        /* Table Styles */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 30px 0;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        .criteria-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Open Sans', sans-serif;
+            min-width: 800px;
+        }
+
+        .criteria-table th {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .criteria-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+
+        .criteria-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .criteria-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .criteria-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Faculty Info Styles */
+        .faculty-info {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .faculty-info h2 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .faculty-info h4 {
+            margin: 8px 0;
+            color: var(--text-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--nba-orange);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--nba-orange);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--nba-orange);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #444;
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .contact-container {
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .resource-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Arrow Button Styles */
+        .criteria-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative; /* Add this */
+        }
+
+        .criteria-title h2 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            display: inline-block; /* Add this */
+        }
+
+        .arrow-btn {
+            cursor: pointer;
+            font-size: 24px;
+            user-select: none;
+            padding: 0 15px; /* Increase padding */
+            color: var(--accent-color); /* Add color */
+            transition: all 0.3s ease; /* Add transition */
+        }
+
+        .arrow-btn:hover {
+            color: var(--nba-orange); /* Add hover effect */
+            transform: scale(1.2);
+        }
+
+        .arrow-btn.disabled {
+            color: #ccc;
+            cursor: default;
+        }
+
+        .arrow-btn.disabled:hover {
+            color: #ccc;
+            transform: none;
+        }
+
+                /* Footer Contact Info Styles */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact-info .contact-item {
+            background: transparent;
+            color: #aaa;
+            padding: 8px 0;
+            border-radius: 0;
+            transform: none;
+            margin: 0;
+        }
+
+        .contact-info .contact-item:hover {
+            background: transparent;
+            color: var(--nba-orange);
+            transform: none;
+            padding-left: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+        <div class="contact-container">
+            <a href="tel:04426801999" class="contact-item">
+                <i class="fas fa-phone"></i> (044) 2680 1999
+            </a>
+            <a href="mailto:saec@saec.ac.in" class="contact-item">
+                <i class="fas fa-envelope"></i> saec@saec.ac.in
+            </a>
+            <a href="https://www.google.com/maps/place/S.A.+Engineering+college/@13.0663298,80.1111821,17z/data=!4m6!3m5!1s0x3a5261f03d683eef:0x435901811125ddfb!8m2!3d13.0663298!4d80.1111821!16s%2Fm%2F0h95zph?entry=ttu&g_ep=EgoyMDI1MDczMC4wIKXMDSoASAFQAw%3D%3D" class="contact-item" target="_blank">
+                <i class="fas fa-map-marker-alt"></i> SA Engineering College, Chennai
+            </a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="Hero2.png" alt="SAEC Logo">
+            </div>
+            
+            <!-- Navigation Toggle Button -->
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Navigation Panel -->
+    <div class="nav-panel" id="navPanel">
+        <ul>
+            <li><a href="#" id="cseNavLink">HOME</a></li>
+            <li><a href="#" data-criteria="criteria1">CRITERIA 1</a></li>
+            <li><a href="#" data-criteria="criteria2">CRITERIA 2</a></li>
+            <li><a href="#" data-criteria="criteria3">CRITERIA 3</a></li>
+            <li><a href="#" data-criteria="criteria4">CRITERIA 4</a></li>
+            <li><a href="#" data-criteria="criteria5">CRITERIA 5</a></li>
+            <li><a href="#" data-criteria="criteria6">CRITERIA 6</a></li>
+            <li><a href="#" data-criteria="criteria7">CRITERIA 7</a></li>
+            <li><a href="#" data-criteria="criteria8">CRITERIA 8</a></li>
+            <li><a href="#" data-criteria="criteria9">CRITERIA 9</a></li>
+            <li><a href="#" data-criteria="criteria10">CRITERIA 10</a></li>
+            
+        </ul>
+    </div>
+
+    <!-- Navigation Overlay -->
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to SAEC</h1>
+            <p>Join our community at S.A. Engineering College</p>
+            
+            <button class="btn btn-secondary" id="guidelineBtn">Guideline</button>
+            <button class="btn" id="pFilesBtn">P-files</button>
+            <button class="btn" id="homebtn">Home</button>
+        </div>
+    </section>
+
+    <!-- Computer Science NBA Section -->
+    <section class="cse-nba-section" id="cseSection">
+        <div class="container">
+            <div class="section-title">
+                <h2>Computer Science & Engineering - NBA 2025</h2>
+                <p>Comprehensive documentation and resources for NBA accreditation</p>
+                <br>
+                <button class="btn" id="exploreBtn">Explore Criterias</button>
+            </div>
+            
+            <!-- Video Tour -->
+            <div class="resource-category">
+                <h3>Video Tour of Programme Specific Facilities</h3>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>CSE - Video Tour</h4>
+                        <p>Virtual tour of Computer Science & Engineering facilities</p>
+                        <a href="https://drive.google.com/file/d/1snXMH-rilO34CY86pakBTHRNXW9wgzbz/view?usp=sharing" class="resource-link" target="_blank">
+                            <i class="fab fa-youtube"></i> Watch Video Tour
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SAR -->
+            <div class="resource-category">
+                <h3>Self Assessment Report (SAR)</h3>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>NBA SAR Computer Science & Engineering</h4>
+                        <p>Complete Self Assessment Report for NBA accreditation</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/NBA_SAR_CSE.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-pdf"></i> Download SAR Document
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Departmental Presentation -->
+            <div class="resource-category">
+                <h3>Departmental Presentation (PPT)</h3>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>CSE Presentation</h4>
+                        <p>Comprehensive presentation of Computer Science & Engineering program</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/CSE_PPT.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-powerpoint"></i> View Presentation
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Course Files -->
+            <div class="resource-category">
+                <h3>Course files (one from each semester), Course file must contain COs, mapping, Target of COs and attainment, Semester session plan, Sample T-L resources, assignment, mid-term papers and end-term papers</h3>
+                <p style="margin-bottom: 20px; color: var(--light-text);">2024-2025 FILES</p>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>2024-2025_III Semester - DBMS</h4>
+                        <p>LINK</p>
+                        <a href="assets/Adobe Scan 07 Aug 2025 (1).pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download Course File
+                        </a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>2024-2025_IV Semester - Computer Architecture</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/course_files/IV Sem Computer Architecture.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download Course File
+                        </a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>2024-2025_V Semester - PPL</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/course_files/V Sem PPL.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download Course File
+                        </a>
+                    </div>
+
+                    <div class="resource-item">
+                        <h4>2024-2025_VI Sem_Web Technologies</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/course_files/V Sem PPL.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download Course File
+                        </a>
+                    </div>
+
+                    <div class="resource-item">
+                        <h4>2024-2025_VII Semester - PPL</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/course_files/V Sem PPL.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download Course File
+                        </a>
+                    </div>
+
+                    <div class="resource-item">
+                        <h4>2024-2025_VIII Semester - PPL</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/course_files/V Sem PPL.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download Course File
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!--7. Time Table -->
+            <div class="resource-category">
+                <h3>Time tables for all semesters of all three assessment years.</h3>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>Time Table </h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/CSE_PPT.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-powerpoint"></i> Download Time Table
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!--8. Departmental faculty list -->
+            <div class="resource-category">
+                <h3> Departmental Faculty List</h3>
+                <p style="margin-bottom: 20px; color: var(--light-text);">FACULTY LIST</p>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>2022-2023</h4>  
+                        
+                        <a href="assets/Faculty_List/NL_2022-2023.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-powerpoint"></i> View File
+                        </a>
+                    </div>
+
+                    <div class="resource-item">
+                        <h4>2023-2024</h4>  
+                        
+                        <a href="assets/Faculty_List/NL_2023-2024.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-powerpoint"></i> View File
+                        </a>
+                    </div>
+
+                    <div class="resource-item">
+                        <h4>2024-2025</h4>  
+                        
+                        <a href="assets/Faculty_List/NL_2024-2025.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-powerpoint"></i> View file
+                        </a>
+                    </div>
+
+                    <div class="resource-item">
+                        <h4>2025-2026</h4>  
+                        <!--<p>LINK</p>-->
+                        <a href="assets/Faculty_List/NL_2025-2026.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-powerpoint"></i> View file
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!--9.  Student list of CAY for all four years -->
+            <div class="resource-category">
+                <h3> Student list of CAY for all four years </h3>
+                <p style="margin-bottom: 20px; color: var(--light-text);">STUDENT LIST</p>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>2024-2025</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/CSE_PPT.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-powerpoint"></i> View file
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+        
+
+            <!-- 10. PLACEMENT LIST  -->
+            <div class="resource-category">
+                <h3>Placement list for all three assessment years (CAYm1, CAYm2, CAYm3)</h3>
+                
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>2023-2024</h4>
+                        <p>LINK</p>
+                        <a href="assets/Adobe Scan 07 Aug 2025 (1).pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>2024-2025</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/course_files/IV Sem Computer Architecture.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>2025-2026</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/course_files/V Sem PPL.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. DETAILED CURRICULUM  -->
+            <div class="resource-category">
+                <h3>Detailed Curriculum</h3>
+                
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>RGM-R-2023</h4>
+                        <p>LINK</p>
+                        <a href="assets/Adobe Scan 07 Aug 2025 (1).pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>RGM-R-2024</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/course_files/IV Sem Computer Architecture.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>RGM-R-2025</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/course_files/V Sem PPL.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12. NBA ACCREDITATION REPORT  -->
+            <div class="resource-category">
+                <h3>NBA accreditation of past visit</h3>
+                
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>2019</h4>
+                        <p>LINK</p>
+                        <a href="assets/Adobe Scan 07 Aug 2025 (1).pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>2016</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/course_files/IV Sem Computer Architecture.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>2022</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/course_files/V Sem PPL.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 13. WITH/WITHOUT BACKLOGS -->
+            <div class="resource-category">
+                <h3>List/Number of students who cleared the program in 4 years (last 3 years data) with and without backlog separately</h3>
+
+                <p style="margin-bottom: 20px; color: var(--light-text);">RESULT WITHOUT BACKLOGS</p>
+                
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>2022-2023</h4>
+                        <p>LINK</p>
+                        <a href="assets/Adobe Scan 07 Aug 2025 (1).pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>2023-2024</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/course_files/IV Sem Computer Architecture.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>2024-2025</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/course_files/V Sem PPL.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>  
+                </div>
+                <BR>
+
+                <p style="margin-bottom: 20px; color: var(--light-text);">RESULT WITH BACKLOGS</p>
+
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>2022-2023</h4>
+                        <p>LINK</p>
+                        <a href="assets/Adobe Scan 07 Aug 2025 (1).pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>2023-2024</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/course_files/IV Sem Computer Architecture.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>2024-2025</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/course_files/V Sem PPL.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>  
+                </div>
+            </div>
+
+            <!-- 14. LIST OF FACULTY -->
+            <div class="resource-category">
+                <h3>List of faculty research papers with online links</h3>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>Faculty Research Papers</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/CSE_PPT.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-powerpoint"></i> Download File
+                        </a>
+                    </div>
+                </div>
+                <BR>
+                <div class="resource-item">
+                        <h4>Online Links Research Papers</h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/CSE_PPT.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-powerpoint"></i> Download File
+                        </a>
+                </div>
+            </div>
+            
+            <!--15. SPONSORED RESEARCH PROJECTS -->
+            <div class="resource-category">
+                <h3>Sponsored research projects along with approvals/ Letters</h3>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4></h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/CSE_PPT.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-powerpoint"></i> Download File
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 16. CONSULTANCY FROM INDUSTRY -->
+            <div class="resource-category">
+                <h3>Consultancy from industry along with approval/ Letters</h3>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4></h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/CSE_PPT.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-powerpoint"></i> Download File
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 17.ACADMIC AUDIT REPORTS -->
+            <div class="resource-category">
+                <h3>Academic Audit Reports</h3>
+                <p style="margin-bottom: 20px; color: var(--light-text);">Academic Audit Reports</p>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4>2022-2023 ODD SEMESTER</h4>
+                        <p>LINK</p>
+                        <a href="assets/Adobe Scan 07 Aug 2025 (1).pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>2022-2023 EVEN SEMESTER</h4>
+                        <p>LINK</p>
+                        <a href="assets/Adobe Scan 07 Aug 2025 (1).pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                    <div class="resource-item">
+                        <h4>2023-2024 ODD SEMESTER</h4>
+                        <p>LINK</p>
+                        <a href="assets/Adobe Scan 07 Aug 2025 (1).pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+
+                    <div class="resource-item">
+                        <h4>2023-2024 ODD SEMESTER</h4>
+                        <p>LINK</p>
+                        <a href="assets/Adobe Scan 07 Aug 2025 (1).pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+
+                    <div class="resource-item">
+                        <h4>2024-2025 ODD SEMESTER</h4>
+                        <p>LINK</p>
+                        <a href="assets/Adobe Scan 07 Aug 2025 (1).pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+
+                    <div class="resource-item">
+                        <h4>2024-2025 EVEN SEMESTER</h4>
+                        <p>LINK</p>
+                        <a href="assets/Adobe Scan 07 Aug 2025 (1).pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-alt"></i> Download File
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 18. OBE -->
+            <div class="resource-category">
+                <h3>CSE - OBE BOOKLET</h3>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <h4></h4>
+                        <p>LINK</p>
+                        <a href="http://www.rgmcet.edu.in/nba/cse/CSE_PPT.pdf" class="resource-link" target="_blank">
+                            <i class="fas fa-file-powerpoint"></i> Download File
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Criteria 1 -->
+    <section class="criteria-container" id="criteria1">
+        <div class="container">
+            <div class="criteria-title">
+                <span class="arrow-btn prev disabled">&#9664;</span><h2>CRITERIA 1</h2><span class="arrow-btn next">&#9654;</span>   
+                <p>Vision, Mission and Program Educational Objectives</p>
+            </div>
+            
+            <div class="faculty-info">
+                <h2>NAME OF FACULTY :</h2>
+                <h4>Mr.A.MANI</h4>
+                <h4>Dr.V.SATHYA PREIYA (CURRICULUM)</h4>
+                <h4>Ms.S.ARUMAISHINEY</h4>
+            </div>
+            
+            <div class="table-container">
+                <table class="criteria-table">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>SubCriteria</th>
+                            <th>Activities On the Day</th>
+                            <th>Task Relevance</th>
+                            <th>Supporting Documents</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>1.1</td>
+                            <td>1.1 State the Vision and Mission of the Department and Institute</td>
+                            <td>A. Availability of the Vision & Mission statements of the Department (1)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>B. Appropriateness/Relevance of the Statements (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>C. Consistency of the Department statements with the Institute statements (2)</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>1.2</td>
+                            <td>1.2 State the Program Educational Objectives (PEOs)</td>
+                            <td>A. Listing of the Program Educational Objectives (3 to 5) of the program under consideration (5)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>1.3</td>
+                            <td>1.3 Indicate where and how the Vision,Mission and PEOs are published and disseminated among stakeholders</td>
+                            <td>A. Adequacy in respect of publication & dissemination (3)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>B. Process of dissemination among stakeholders (3)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>C. Extent of awareness of Vision, Mission & PEOs among the stakeholder (9)</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>1.4</td>
+                            <td>1.4 State the process for defining the Vision and Mission of the Department, and PEOs of the program</td>
+                            <td>A. Description of process involved in defining the Vision, Mission of the Department (7)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>B. Description of process involved in defining the PEOs of the program (8)</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>1.5</td>
+                            <td>1.5 Establish consistency of PEOs with Mission of the Department</td>
+                            <td>A. Preparation of a matrix of PEOs and elements of Mission statement (5)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>B. Consistency/justification of co-relation parameters of the above matrix (5)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Criteria 2 -->
+    <section class="criteria-container" id="criteria2">
+        <div class="container">
+            <div class="criteria-title">
+                <span class="arrow-btn prev">&#9664;</span><h2>CRITERIA 2</h2><span class="arrow-btn next">&#9654;</span>
+                <p>Program Curriculum and Teaching-Learning Processes</p>
+            </div>
+            
+            <div class="faculty-info">
+                <h2>NAME OF FACULTY :</h2>
+                <h4>MS.L.SUDHA (IC)</h4>
+                <h4>DR.V.SATHYA PREIYA(CURRICULUM) </h4>    
+                <h4>MS.R.SHOBANA</h4>   
+                <h4> DR. VISALAXI G(R&D)</h4>   
+                
+            </div>
+            
+            <div class="table-container">
+                <table class="criteria-table">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>SubCriteria</th>
+                            <th>Activities On the Day</th>
+                            <th>Task Relevance</th>
+                            <th>Supporting Documents</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2.1</td>
+                            <td>2.1.1. State the process for designing the program curriculum</td>
+                            <td>Process used to demonstrate how the program curriculum is evolved and periodically reviewed considering the POs and PSOs. Also consider the involvement of the Industry.</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>2.1.2. Structure of the Curriculum</td>
+                            <td>Refer to SAR: Expectation in 2.1.2 & 2.1.3 is that the curriculum is well balanced structure & appropriate for a degree program.</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>2.1.3. State the components of the curriculum</td>
+                            <td>Refer to SAR: Expectation in 2.1.2 & 2.1.3 is that the curriculum is well balanced structure & appropriate for a degree program</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>2.1.4. State the process used to identify extent of compliance of the curriculum for attaining the Program Outcomes(POs) & Program Specific Outcomes(PSOs)</td>
+                            <td>Process used to identify extent of compliance of curriculum for attaining POs & PSOs (10)</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2.2</td>
+                            <td>2.2.1. Describe the Process followed to improve quality of Teaching Learning</td>
+                            <td>A. Adherence to Academic Calendar (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>B. Pedagogical initiatives (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>C. Methodologies to support weak students and encourage bright students(2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>D. Quality of classroom teaching (Observation in a Class) (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>E. Conduct of experiments (Observation in Lab) (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>F. Continuous Assessment in the laboratory (3)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>G. Student feedback of teaching learning process and actions taken (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>2.2.2. Quality of end semester examination, internal semester question papers, assignments and evaluation</td>
+                            <td>A. Process for internal semester question paper setting and evaluation and effective process implementation (3)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>B. Process to ensure questions from outcomes/learning levels perspective (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>C. Evidence of COs coverage in class test / mid-term tests (5)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>D. Quality of Assignment and its relevance to COs (5)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>2.2.3. Quality of student projects</td>
+                            <td>A. Identification of projects and allocation methodology to Faculty Members (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>B. Types and relevance of the projects and their contribution towards attainment of POs and PSOs (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>C. Project related to Industry (3)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>D. Process for monitoring and evaluation (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>E. Process to assess individual and team performance (3)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>F. Quality of completed projects/working prototypes (5)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>G. Evidences of papers published /Awards received by projects etc. (3)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>2.2.4. Initiatives related to industry interaction</td>
+                            <td>A. Industry supported laboratories (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>B. Industry involvement in the program design and Curriculum. (3)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>C. Industry involvement in partial delivery of any regular courses for students (3)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>D. Impact analysis of industry institute interaction and actions taken thereof (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>2.2.5. Initiatives related to industry internship/summer training</td>
+                            <td>A. Industrial training/tours for students (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>B. Industrial /internship /summer training of more than two weeks and post training Assessment (3)</a></td>
+                            <td><a href="assets/Criterias/Criteria 2/Adobe Scan 07 Aug 2025 (1).pdf " target="_blank">View File</a></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>C. Impact analysis of industrial training (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>D. Student feedback on initiative (3)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Criteria 3 -->
+    <section class="criteria-container" id="criteria3">
+        <div class="container">
+            <div class="criteria-title">
+                <span class="arrow-btn prev">&#9664;</span><h2>CRITERIA 3</h2><span class="arrow-btn next">&#9654;</span>
+                <p>Course Outcomes and Program Outcomes</p>
+            </div>
+            
+            <div class="faculty-info">
+                <h2>NAME OF FACULTY :</h2>
+                <h4>DR.V.SUREKA &K.B.ARUNA(IC)
+                <h4>DR.T.AMITHA(IC)</h4>
+                <h4>MRS.NRG SREEVANI</h4>
+                <h4>MRS.S.GUNA NANDHINI</h4>
+                <h4>MRS.R.DHIVYA BHARATHI</h4>
+                <h4>MRS.V.INDIRA</h4>
+                <h4>MRS.K.PUNITHASURIYA</h4>
+            </div>
+            
+            <div class="table-container">
+                <table class="criteria-table">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>SubCriteria</th>
+                            <th>Activities On the Day</th>
+                            <th>Task Relevance</th>
+                            <th>Supporting Documents</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>3.1</td>
+                            <td>3.1. Establish the correlation between the courses and the POs & PSOs (25)</td>
+                            <td>A. Evidence of COs being defined for every course (5)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>B. Availability of COs embedded in the syllabi (5)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>C. Explanation of Course Articulation Matrix table to be ascertained (5)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>D. Explanation of Program Articulation Matrix tables to be ascertained (10)</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>3.2</td>
+                            <td>3.2. Attainment of Course Outcomes (75)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>3.2.1. Describe the assessment tools and processes used to gather the data upon which the evaluation of Course Outcome is based (10)</td>
+                            <td>A. List of assessment processes (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>B. The quality /relevance of assessment processes & tools used (8)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>3.2.2. Record the attainment of Course Outcomes of all courses with respect to set attainment levels (65)</td>
+                            <td>A. Verify the attainment levels as per the benchmark set for all courses (65)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>3.3</td>
+                            <td>3.3. Attainment of Program Outcomes and Program Specific Outcomes (75)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>3.3.1.Describe assessment tools and processes used for assessing the attainment of each of the POs & PSOs (10)</td>
+                            <td>A. List of assessment tools & processes (5)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>B. The quality/relevance of assessment tools/processes used (5)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>3.3.2. Provide results of evaluation of each PO & PSO (65)</td>
+                            <td>A. Verification of documents, results and level of attainment of each PO/PSO (50)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>B. Overall levels of attainment (15)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Criteria 4 -->
+    <section class="criteria-container" id="criteria4">
+        <div class="container">
+            <div class="criteria-title">
+                <span class="arrow-btn prev">&#9664;</span><h2>CRITERIA 4</h2><span class="arrow-btn next">&#9654;</span>
+                <p>Students' Performance</p>
+            </div>
+            
+            <div class="faculty-info">
+                <h2>NAME OF FACULTY :</h2>
+                <h3>MM TEAM</h3>
+                <h4>MR.M.BALASUBRAMANIAN, (IC) </h4>
+                <h4>MRS.S N.ANANTHI</h4>
+                <h4>MRS.L.DHARANI</h4>
+                <h4>MRS.P.RUBA SUDHA</h4>
+                <br>
+                <h3>PLACEMENT TEAM</h3>
+                <h4>MUTHUKUMARASAMY(IC)</h4>
+                <h4>SIVASAKTHI</h4>
+                <h4>MRS.J.SANGEETHA</h4>
+                <h4>MRS.G.SARANYA</h4>
+                <br>
+                <h3>ECACCA TEAM</h3> 
+                <h4>DR.M.KAVITHA (IC)</h4>
+                <h4>MRS.S.SASIKALA</h4>
+                <h4>DR.S.SIVAKUMAR(IC)</h4>
+                <h4>MRS.P.PRIYADHARSINI</h4>
+
+            </div>
+            
+            <div class="table-container">
+                <table class="criteria-table">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>SubCriteria</th>
+                            <th>Activities On the Day</th>
+                            <th>Task Relevance</th>
+                            <th>Supporting Documents</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>4</td>
+                            <td>4.1</td>
+                            <td>4.1. Enrolment Ratio (20)</td>
+                            <td>A. >= 90% students enrolled at the First Year Level on average basis during the previous three academic years starting from current academic year (20)<br>B. >= 80% students enrolled at the First Year Level on average basis during the previous three academic years starting from current academic year (18)<br>C. >= 70% students enrolled at the First Year Level on average basis during the previous three academic years starting from current academic year (16)<br>D. >= 60% students enrolled at the First Year Level on average basis during the previous three academic years starting from current academic year (14)<br>E. Otherwise '0'.</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>4.2</td>
+                            <td>4.2. Success Rate in the stipulated period of the program (20)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>4.2.1. Success rate without backlog in any Semester/year of study (15)</td>
+                            <td>SI= (Number of students who graduated from the program without repeat(s) in any course)/(Number of students admitted in the first year of that batch and actually admitted in 2nd year via lateral entry and separate division, if applicable)<br>Average SI = Mean of success index (SI) for past three batches Success rate without backlogs in any year of study = 15 × Average SI</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>4.2.2. Success rate in stipulated period (actual duration of the (5)</td>
+                            <td>SI= (Number of students who graduated from the program in the stipulated period of course duration)/(Number of students admitted in the first year of that batch and actually admitted in 2nd year via lateral entry and separate division, if applicable) Average SI = mean of success index (SI) for past three batches<br>Success rate = 5 × Average SI</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>4.3</td>
+                            <td>4.3. Academic Performance in Second Year (10)</td>
+                            <td>Academic Performance Level = Average API (Academic Performance Index)<br>API = ((Mean of 2nd Year Grade Point Average of all successful Students on a 10 point scale) or (Mean of the percentage of marks of all successful student sin Second Year/10)) x (successful students/number of students appeared in the examination)<br>Successful students are those who are permitted to proceed to the Third year</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>4.4</td>
+                            <td>4.4. Placement, Higher studies and Entrepreneurship (30)</td>
+                            <td>Assessment Points = 30 × average of three years of [ (x + y + z)/N] where, x = Number of students placed in companies or Government sector through on/off campus recruitment<br>y = Number of students admitted to higher studies with valid qualifying scores (GATE or equivalent State or National level tests, GRE, GMAT etc.)<br>z = No. of students turned entrepreneur in engineering/technology N =Total number of final year students</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>4.5</td>
+                            <td>4.5. Professional Activities (20)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>4.5.1. Professional societies / chapters and organizing engineering events (5)</td>
+                            <td>A. Availability & activities of professional societies/chapters (3)<br>B. Number, quality of engineering events (organized at institute) (2) (Level - Institute/State/National/International)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>4.5.2. Publication of technical magazines, newsletters, etc. (5)</td>
+                            <td>A. Quality & Relevance of the contents and Print Material (3)<br>B. Participation of Students from the program (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>4.5.3. Participation in inter-institute events by students of the program of study (at other institutions) (10)</td>
+                            <td>A. Events within the state (2)<br>B. Events outside the state (3)<br>C. Prizes/awards received in such events (5)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Criteria 5 -->
+    <section class="criteria-container" id="criteria5">
+        <div class="container">
+            <div class="criteria-title">
+                <span class="arrow-btn prev">&#9664;</span><h2>CRITERIA 5</h2><span class="arrow-btn next">&#9654;</span>
+                <p>Faculty Information and Contributions</p>
+            </div>
+            
+            <div class="faculty-info">
+                <h2>NAME OF FACULTY :</h2>
+                <h3>R&D TEAM</h3>
+                <h4>DR.M.ANURADHA(IC)</h4>
+                <h4>DR.V.KALIRAJ</h4>
+                <h4>MS.G.BELSHIA JEBAMALAR</h4>
+                <h4>MRS.S.GAYATHRI</h4>
+                <h4>DR. VISALAXI G</h4>
+                <br>
+                <h3>HR TEAM</h3>
+                <h4>MRS.V.SARASWATHI(IC)</h4>
+                <h4>MRS.S.REKHA</h4>
+                <br>
+                <h3>AEC TEAM</h3>
+                <h4>DR.N.THILAGAVATHY (IC)</h4>
+                <h4>MS.L.SUDHA(AEC-WORK ALLOCATION &TIMETABLE)</h4>
+                <h4>DR.V.SUREKA(AEC-WORK ALLOCATION &TIMETABLE)</h4>
+                <h4>MRS.O.VASANTHA KUMARI(AEC BACK WORK)</h4>
+                <h4>MRS.M.P ASWATHY(AEC BACK WORK) </h4>
+
+            </div>
+            
+            <div class="table-container">
+                <table class="criteria-table">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>SubCriteria</th>
+                            <th>Activities On the Day</th>
+                            <th>Task Relevance</th>
+                            <th>Supporting Documents</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>5.1</td>
+                            <td>5.1. Student-Faculty Ratio (SFR) (20)</td>
+                            <td>Marks to be given proportionally from a maximum of 20 to a minimum of 10 for average SFR between 15:1 to 25:1, and zero for average SFR higher than 25:1. Marks distribution is given as below:<br>&lt; = 15 - 20 Marks<br>&lt; = 17 - 18 Marks<br>&lt; = 19 - 16 Marks<br>&lt; = 21 - 14 Marks<br>&lt; = 23 - 12 Marks<br>&lt; = 25 - 10 Marks<br>&gt; 25 - 0 Marks</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>5.2</td>
+                            <td>5.2. Faculty Cadre Proportion (20)</td>
+                            <td>Cadre Proportion Marks =<br>AF1 + AF2 x 0.6 + AF3 x 0.4 x 10 RF1 RF2 RF3<br>• If AF1 = AF2= 0 then zero marks<br>• Maximum marks to be limited if it exceeds 20 (Refer calculation in SAR)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>5.3</td>
+                            <td>5.3. Faculty Qualification (20)</td>
+                            <td>FQ = 2.0 x [{10X +4Y}/F] where<br>X is no. of faculty with Ph.D., Y is no. of faculty with M.Tech., F is no. of faculty required to comply 1:20 Faculty Student ratio<br>(no. of faculty and no. of students required to be calculated as per 5.1)</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>5.4</td>
+                            <td>5.4. Faculty Retention (10)</td>
+                            <td>A. ≥ 90% of required Faculties retained during the period of assessment keeping CAYm2 as base year (10)<br>B. ≥ 75% of required Faculties retained during the period of assessment keeping CAYm2 as base year (08)<br>C. ≥ 60% of required Faculties retained during the period of assessment keeping CAYm2 as base year (06)<br>D. ≥ 50% of required Faculties retained during the period of assessment keeping CAYm2 as base year (04)<br>E. Otherwise (0)</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>5.5</td>
+                            <td>5.5. Faculty competencies in correlation to Program Specific Criteria (10)</td>
+                            <td>A. Specialization<br>B. Research Publications<br>C. Course Developments<br>D. Other relevant points</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>5.6</td>
+                            <td>5.6. Innovations by the Faculty in Teaching and Learning (10)</td>
+                            <td>A. Statement of clear goals, use of appropriate methods, significance of results, effective presentation (4)<br>B. Availability of work on the Institute Website (2)<br>C. Availability of work for peer review and critique (2)<br>D. Reproducibility and Reusability by other scholars for further development (2)</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>5.7</td>
+                            <td>5.7. Faculty as participants in Faculty development /training activities /STTPs (15)</td>
+                            <td>For each year: Assessment = 3×Sum/0.5RF<br>Average assessment over last three years starting from CAYm1 (Marks limited to 15)</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>5.8</td>
+                            <td>5.8. Research and Development (75)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>5.8.1. Academic Research (20)</td>
+                            <td>A. Number of quality publications in refereed/SCI Journals, citations, Books/Book Chapters etc. (15)<br>B. PhD awarded during the assessment period while working in the institute (5)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>5.8.2 Sponsored Research (20)</td>
+                            <td>Funded research from outside; Cumulative during CAYm1, CAYm2 and CAYm3 Amount > 50 Lakh – 20 Marks,<br>Amount >40 and < 50 Lakh – 15 Marks,<br>Amount >30 and < 40 Lakh – 10 Marks,<br>Amount >15 and < 30 Lakh – 5 Marks,<br>Amount< 15 Lakh – 0 Marks</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>5.8.3 Development Activities (15)</td>
+                            <td>A. Product Development<br>B. Research laboratories<br>C. Instructional materials<br>D. Working models/charts/monograms etc.</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>5.8.4. Consultancy (From Industry) (20)</td>
+                            <td>Consultancy; Cumulative during CAYm1, CAYm2 and CAYm3 Amount >10 Lakh – 20 Marks,<br>Amount <10 and > 8 Lakh – 15 Marks, Amount < 8 and > 6 Lakh – 10 Marks, Amount < 6 and > 4 Lakh – 5 Marks, Amount < 4 and > 2 Lakh – 2 Marks</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>5.9</td>
+                            <td>5.9. Faculty Performance Appraisal and Development System (FPADS) (10)</td>
+                            <td>A. A well-defined performance appraisal and development system instituted for all the assessment years (5)<br>B. Its implementation and effectiveness (5)</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>5.10</td>
+                            <td>5.10. Visiting/Adjunct/Emeritus Faculty etc. (10)</td>
+                            <td>Provision of Visiting /Adjunct/Emeritus faculty etc.(1)<br>• Minimum 50 hours per year interaction (per year to obtain three marks : 3 x 3 = 9)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Criteria 6 -->
+    <section class="criteria-container" id="criteria6">
+        <div class="container">
+            <div class="criteria-title">
+                <span class="arrow-btn prev">&#9664;</span><h2>CRITERIA 6</h2><span class="arrow-btn next">&#9654;</span>
+                <p>Facilities and Technical Support</p>
+            </div>
+            
+            <div class="faculty-info">
+                <h2>NAME OF FACULTY :</h2>
+                <h4>DR.S.SIVAKUMAR(IC)</h4>
+                <h4>MRS.P.PRIYADHARSINI</h4>
+
+            </div>
+            
+            <div class="table-container">
+                <table class="criteria-table">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>SubCriteria</th>
+                            <th>Activities On the Day</th>
+                            <th>Task Relevance</th>
+                            <th>Supporting Documents</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>6.1</td>
+                            <td>6.1. Adequate and well equipped (40)</td>
+                            <td>A. Adequate well-equipped laboratories to run all the program-specific curriculum (25)<br>B. Availability of adequate and qualified technical supporting staff (15)</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>6.2</td>
+                            <td>6.2. Laboratories: Maintenance and overall ambience (10)</td>
+                            <td>Maintenance and overall ambience (10)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>6.3</td>
+                            <td>6.3. Safety measures in laboratories (10)</td>
+                            <td>Safety measures in laboratories (10)</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>6.4</td>
+                            <td>6.4. Project laboratory/Facilities (20)</td>
+                            <td>Facilities & Utilization (20)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Criteria 7 -->
+    <section class="criteria-container" id="criteria7">
+        <div class="container">
+            <div class="criteria-title">
+                <span class="arrow-btn prev">&#9664;</span><h2>CRITERIA 7</h2><span class="arrow-btn next">&#9654;</span>
+                <p>Continuous Improvement</p>
+            </div>
+            
+            <div class="faculty-info">
+                <h2>NAME OF FACULTY :</h2>
+                <h4>MR.C.BALAKRISHNAN(IC)</h4>
+                <h4>MRS.V.INDIRA (CO&PO)</h4>
+            
+            </div>
+            
+            <div class="table-container">
+                <table class="criteria-table">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>SubCriteria</th>
+                            <th>Activities On the Day</th>
+                            <th>Task Relevance</th>
+                            <th>Supporting Documents</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>7.1</td>
+                            <td>7.1. Actions taken based on the results of evaluation of each of the POs and PSOs (30)</td>
+                            <td>A. Documentary evidences of POs and PSOs attainment levels (15)<br>B. Identification of gaps/shortfalls (05)<br>C. Plan of action to bridge the gap and its Implementation (10)</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>7.2</td>
+                            <td>7.2. Academic Audit and actions taken during the period of Assessment (15)</td>
+                            <td>A. Assessment shall be based on conduct and actions taken in relation to continuous improvement (15)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>7.3</td>
+                            <td>7.3. Improvement in Placement, Higher Studies and Entrepreneurship (10)</td>
+                            <td>Assessment is based on improvement in: (Refer placement index 4.5)<br>A. Improvement in Placement numbers, quality, core hiring industry and pay packages (5)<br>B. Improvement in Higher Studies admissions for pursuing PhD. in premier institutions(3)<br>C. Improvement in number of Entrepreneurs (2)<br>(Marks to be given proportionately considering nos. in the base year CAYm3)</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>7.4</td>
+                            <td>7.4. Improvement in the quality of students admitted to the program (20)</td>
+                            <td>A. Assessment is based on improvement in terms of ranks/score in qualifying state level/national level entrances tests, percentage Physics, Chemistry and Mathematics marks in 12th Standard and percentage marks of the lateral entry students</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Criteria 8 -->
+    <section class="criteria-container" id="criteria8">
+        <div class="container">
+            <div class="criteria-title">
+                <span class="arrow-btn prev">&#9664;</span><h2>CRITERIA 8</h2><span class="arrow-btn next">&#9654;</span>
+                <p>First Year Academics</p>
+            </div>
+            
+            <div class="faculty-info">
+                <h2>NAME OF FACULTY :</h2>
+                <h4>DR.N.THILAGAVATHY (IC)</h4>
+                <h4>DR.V.SATHYA PREIYA (IC)(CRP)</h4>
+                <h4>MRS.K.PUNITHASURIYA(CO&PO)</h4>
+                <h4>MRS.S.REKHA(HR)</h4>
+            </div>
+            
+            <div class="table-container">
+                <table class="criteria-table">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>SubCriteria</th>
+                            <th>Activities On the Day</th>
+                            <th>Task Relevance</th>
+                            <th>Supporting Documents</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>8.1</td>
+                            <td>8.1. First Year Student- Faculty Ratio (FYSFR) (5)</td>
+                            <td>For each year of assessment = (5 × 20)/ FYSFR<br>(Limited to Max. 5) Average of Assessment of data in CAY, CAYm1 and CAYm2<br>*Note: If FYSFR is greater than 25, then assessment equal to zero.</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>8.2</td>
+                            <td>8.2. Qualification of Faculty Teaching First Year Common Courses (5)</td>
+                            <td>A. Assessment of faculty qualification (5x + 3y)/RF<br>B. Average of Assessment of previous three academic years including current academic year.<br>(Refer 8.2. for x, y and RF)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>8.3</td>
+                            <td>8.3. First Year Academic Performance (10)</td>
+                            <td>Academic Performance = ((Mean of 1st Year Grade Point Average of all successful Students on a 10 point scale) or (Mean of the percentage of marks in First Year of all successful students/10)) x (successful students/number of students appeared in the examination)<br>(Successful students are those who are permitted to proceed to the Second year)</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>8.4</td>
+                            <td>8.4. Attainment of Course Outcomes of first year courses (10)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>8.4.1. Describe the assessment processes used to gather the data upon which the evaluation of Course Outcomes of first year is based (5)</td>
+                            <td>A. List of assessment processes (1)<br>B. The relevance of assessment tools used (4)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>8.4.2. Record the attainment of Course Outcomes of all first year course (5)</td>
+                            <td>A. Verify the records as per the benchmark set for the courses (5)</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>8.5</td>
+                            <td>8.5. Attainment of Program Outcomes of all first year courses (20)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>8.5.1. Indicate results of evaluation of each relevant PO/PSO (10)</td>
+                            <td>Process of computing POs/PSOs attainment level from the COs of related first year courses (5) Verification of documents validating the above process (5)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>8.5.2. Actions taken based on the results of evaluation of relevant POs /PSOs (10)</td>
+                            <td>A. Appropriate actions taken (10)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Criteria 9 -->
+    <section class="criteria-container" id="criteria9">
+        <div class="container">
+            <div class="criteria-title">
+                <span class="arrow-btn prev">&#9664;</span><h2>CRITERIA 9</h2><span class="arrow-btn next">&#9654;</span>
+                <p>Student Support Systems</p>
+            </div>
+            
+            <div class="faculty-info">
+                <h2>NAME OF FACULTY :</h2>
+                <h4>MS.C.LAKSHMIPRIYA(IC)</h4>
+                <h4>MRS.SAL MAHALAKSHMI</h4>
+            </div>
+            
+            <div class="table-container">
+                <table class="criteria-table">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>SubCriteria</th>
+                            <th>Activities On the Day</th>
+                            <th>Task Relevance</th>
+                            <th>Supporting Documents</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>9.1</td>
+                            <td>9.1. Mentoring system to help at individual level (5)</td>
+                            <td>A. Details of the mentoring system that has been developed for the students for various purposes and also state the efficacy of such system (5)</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>9.2</td>
+                            <td>9.2. Feedback analysis and reward /corrective measures taken, if any (10)</td>
+                            <td>A. Methodology being followed for analysis of feedback and its effectiveness (5)<br>B. Record of corrective measures taken (5)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>9.3</td>
+                            <td>9.3. Feedback on facilities (5)</td>
+                            <td>A. Feedback collection, analysis and corrective action (5)</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>9.4</td>
+                            <td>9.4. Self - Learning (5)</td>
+                            <td>A. Scope for self-learning (2)<br>B. The institution needs to specify the facilities, materials for learning beyond syllabus, Webinars, Podcast, MOOCs etc. and demonstrate its effective utilization (3)</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>9.5</td>
+                            <td>9.5. Career Guidance, Training, Placement (10)</td>
+                            <td>A. Availability of career guidance facilities (2)<br>B. Counseling for higher studies (GATE/GRE, GMAT, etc.) (2)<br>C. Pre-placement training (3)<br>D. Placement process and support (3)</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>9.6</td>
+                            <td>9.6. Entrepreneurship Cell (5)</td>
+                            <td>A. Entrepreneurship initiatives (3)<br>B. Data on students benefitted (2)</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>9.7</td>
+                            <td>9.7. Co-curricular and Extra-curricular Activities (10)</td>
+                            <td>A. Availability of sports and cultural facilities (3)<br>B. NCC, NSS and other clubs (3)<br>C. Annual students activities (4)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Criteria 10 -->
+    <section class="criteria-container" id="criteria10">
+        <div class="container">
+            <div class="criteria-title">
+                <span class="arrow-btn prev">&#9664;</span><h2>CRITERIA 10</h2><span class="arrow-btn next">&#9654;</span>
+                <p>Governance, Institutional Support and Financial Resources</p>
+            </div>
+            
+            <div class="faculty-info">
+                <h2>NAME OF FACULTY :</h2>
+                <h4>MS.K.B.ARUNA</h4>
+                <h4>MS.REVATHI(IC)</h4>
+            </div>
+            
+            <div class="table-container">
+                <table class="criteria-table">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>SubCriteria</th>
+                            <th>Activities On the Day</th>
+                            <th>Task Relevance</th>
+                            <th>Supporting Documents</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>10.1</td>
+                            <td>10.1 Organization, Governance and Transparency (55)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>10.1.1.State the Vision and Mission of the Institute (5)</td>
+                            <td>A. Availability of the Vision & Mission statements of the Institute (2)<br>B. Appropriateness/ Relevance of the Statements (3)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>10.1.2. Availability of the Institutional Strategic Plan and its Effective Implementation and Monitoring (25)</td>
+                            <td>Availability of a 5 year Strategic Plan.</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>10.1.3. Governing body, administrative setup, functions of various bodies, service rules procedures, recruitment and promotional policies. (10)</td>
+                            <td>A. List the Governing Body Composition and its Sub Committees, senate, and all other academic and administrative bodies; their memberships, functions, and responsibilities; frequency of the meetings; participation details of external members and attendance therein (4)<br>B. The published service rules, policies and procedures with year of publication (3)<br>C. Minutes of the meetings and action-taken reports (3)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>10.1.4. Decentralization in working and grievance redressal mechanism (5)</td>
+                            <td>A. Organizational Structure, List of Administrative Committees and Administrative Heads who have been delegated powers for taking administrative decisions (1)<br>B. Specify the mechanism and composition of grievance redressal cell (1)<br>C. Action taken report of representations (sample) (3)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>10.1.5. Delegation of financial powers (5)</td>
+                            <td>A. Financial powers delegated to the Principal, Heads of Departments and relevant in-charges (2)<br>B. Demonstrate the utilization of financial powers for each of the assessment years (3)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>10.1.6. Transparency and availability of correct/unambiguous information in public domain (5)</td>
+                            <td>A. Information on the policies, rules, processes is to be made available on web site (2)<br>B. Dissemination of the information about student, faculty and staff (2)<br>C. Mandatory disclosure as per AICTE/AISHE on the website. (1)</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>10.2</td>
+                            <td>Budget Allocation, Utilization, and Public Accounting at Institute level 15</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>10.2.1. Adequacy of Budget allocation (5)</td>
+                            <td>A. Quantum of budget allocation for three years (3)<br>B. Justification of budget allocated for three years (2)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>10.2.2. Utilization of allocated funds (5)</td>
+                            <td>A. Budget utilization for three years (5)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>10.2.3. Availability of the audited statements on the institute's website (5)</td>
+                            <td>A. Availability of Audited statements on website (5)</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>10.3</td>
+                            <td>Program Specific Budget Allocation, Utilization 30</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>10.3.1. Adequacy of budget allocation (10)</td>
+                            <td>A. Quantum of budget allocation for three years (5)<br>B. Justification of budget allocated for three years (5)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>10.3.2. Utilization of allocated funds (20)</td>
+                            <td>A. Budget utilization for three years (20)</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>10.4</td>
+                            <td>Library and Internet 20</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>10.4.1. Quality of learning resources(hard/soft) (10)</td>
+                            <td>Availability of relevant learning resources including e-resources and Digital Library (7)<br>• Accessibility to students (3)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>10.4.2. Internet (10)</td>
+                            <td>A. Available bandwidth (4)<br>B. Wi Fi availability (2)<br>C. Internet access in labs, classrooms, library and offices of all Departments (2)<br>D. Security mechanism (2)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>SAEC</h3>
+                    <p>S.A. Engineering College is committed to excellence in technical education and research.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-home-link">HOME</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="video-tour">Video Tour</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="sar">Self Assessment Report</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="presentation">Departmental Presentation</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="course-files">Course Files</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="time-table">Time Tables</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="faculty-list">Faculty List</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="student-list">Student List</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="placement">Placement List</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="curriculum">Detailed Curriculum</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>NBA Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-criteria-link" data-criteria="criteria1">NBA Criteria Section</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="nba-accreditation">NBA Accreditation Reports</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="backlogs">Results with/without Backlogs</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="research-papers">Faculty Research Papers</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="research-projects">Sponsored Research</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="consultancy">Industry Consultancy</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="audit-reports">Academic Audit Reports</a></li>
+                        <li><a href="#" class="footer-section-link" data-section="obe">OBE Booklet</a></li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <a href="tel:04426801999" class="contact-item">
+                            <i class="fas fa-phone"></i> (044) 2680 1999
+                        </a>
+                        <a href="mailto:saec@saec.ac.in" class="contact-item">
+                            <i class="fas fa-envelope"></i> saec@saec.ac.in
+                        </a>
+                        <a href="https://www.google.com/maps/place/S.A.+Engineering+college/@13.0663298,80.1111821,17z/data=!4m6!3m5!1s0x3a5261f03d683eef:0x435901811125ddfb!8m2!3d13.0663298!4d80.1111821!16s%2Fm%2F0h95zph?entry=ttu&g_ep=EgoyMDI1MDczMC.0wIKXMDSoASAFQAw%3D%3D" class="contact-item" target="_blank">
+                            <i class="fas fa-map-marker-alt"></i> SA Engineering College, Chennai
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 NBA at SA Engineering College. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navPanel = document.getElementById('navPanel');
+        const navOverlay = document.getElementById('navOverlay');
+    
+        navToggle.addEventListener('click', () => {
+            navPanel.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        
+            // Change icon based on panel state
+            if (navPanel.classList.contains('active')) {
+                navToggle.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+    
+        navOverlay.addEventListener('click', () => {
+            navPanel.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+            navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+    
+        // Criteria Navigation
+        const criteriaLinks = document.querySelectorAll('[data-criteria]');
+        const criteriaSections = document.querySelectorAll('.criteria-container');
+        const exploreBtn = document.getElementById('exploreBtn');
+        const guidelineBtn = document.getElementById('guidelineBtn');
+        const pFilesBtn = document.getElementById('pFilesBtn');
+        const cseNavLink = document.getElementById('cseNavLink');
+        const cseSection = document.getElementById('cseSection');
+        const footerCriteriaLinks = document.querySelectorAll('.footer-criteria-link');
+    
+        // Hide all criteria sections initially
+        criteriaSections.forEach(section => {
+            section.style.display = 'none';
+        });
+    
+        // Show CSE section by default
+        cseSection.style.display = 'block';
+    
+        let currentCriteriaIndex = -1;
+
+        // Function to show a specific criteria section
+        function showCriteriaSection(targetCriteria) {
+            const targetSection = document.getElementById(targetCriteria);
+            
+            // Hide all sections
+            criteriaSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            cseSection.style.display = 'none';
+            
+            // Show the selected criteria section
+            if (targetSection) {
+                targetSection.style.display = 'block';
+                currentCriteriaIndex = Array.from(criteriaSections).indexOf(targetSection);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+                
+                // Update arrow button states
+                updateArrowButtons();
+            }
+        }
+
+        // Function to show criteria by index
+        function showCriteriaByIndex(index) {
+            // Hide all sections
+            criteriaSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            cseSection.style.display = 'none';
+            
+            // Show the selected criteria
+            if (criteriaSections[index]) {
+                criteriaSections[index].style.display = 'block';
+                currentCriteriaIndex = index;
+                
+                window.scrollTo({
+                    top: criteriaSections[index].offsetTop - 100,
+                    behavior: 'smooth'
+                });
+                
+                // Update arrow button states
+                updateArrowButtons();
+            }
+        }
+
+        // Function to update arrow button states
+        function updateArrowButtons() {
+            const allPrevBtns = document.querySelectorAll('.arrow-btn.prev');
+            const allNextBtns = document.querySelectorAll('.arrow-btn.next');
+            
+            allPrevBtns.forEach(btn => {
+                if (currentCriteriaIndex <= 0) {
+                    btn.classList.add('disabled');
+                } else {
+                    btn.classList.remove('disabled');
+                }
+            });
+            
+            allNextBtns.forEach(btn => {
+                if (currentCriteriaIndex >= criteriaSections.length - 1) {
+                    btn.classList.add('disabled');
+                } else {
+                    btn.classList.remove('disabled');
+                }
+            });
+        }
+        
+        // Handle criteria navigation from main nav
+        criteriaLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const targetCriteria = link.getAttribute('data-criteria');
+                showCriteriaSection(targetCriteria);
+                
+                // Close the navigation panel
+                navPanel.classList.remove('active');
+                navOverlay.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+                navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Handle Computer Science navigation
+        cseNavLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Hide all criteria sections
+            criteriaSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show CSE section
+            cseSection.style.display = 'block';
+            currentCriteriaIndex = -1;
+            
+            // Scroll to CSE section
+            window.scrollTo({
+                top: cseSection.offsetTop - 100,
+                behavior: 'smooth'
+            });
+            
+            // Update arrow button states
+            updateArrowButtons();
+            
+            // Close the navigation panel
+            navPanel.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+            navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+        
+        // Handle criteria navigation from footer
+        footerCriteriaLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const targetCriteria = link.getAttribute('data-criteria');
+                showCriteriaSection(targetCriteria);
+            });
+        });
+        
+        // Explore button functionality
+        exploreBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showCriteriaByIndex(0); // Start from criteria 1 (index 0)
+        });
+        
+        // Guideline button functionality
+        guidelineBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Guideline button clicked. This would display the criteria guidelines.');
+            // In a real implementation, this would show a modal or navigate to a guidelines page
+        });
+        
+        // P-files button functionality
+        pFilesBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open("assets/PFiles/List of Documents-UG-Engg-1st cycle (005).pdf", "_blank");
+        });
+
+        // Home Button Functionality
+        const homebtn = document.getElementById('homebtn');
+        homebtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Hide all criteria sections
+            criteriaSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show CSE section
+            cseSection.style.display = 'block';
+            currentCriteriaIndex = -1;
+            
+            // Scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Update arrow button states
+            updateArrowButtons();
+        });
+
+        // Arrow button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click events to all next buttons
+            document.querySelectorAll('.arrow-btn.next').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (currentCriteriaIndex < criteriaSections.length - 1) {
+                        showCriteriaByIndex(currentCriteriaIndex + 1);
+                    }
+                });
+            });
+            
+            // Add click events to all previous buttons
+            document.querySelectorAll('.arrow-btn.prev').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (currentCriteriaIndex > 0) {
+                        showCriteriaByIndex(currentCriteriaIndex - 1);
+                    }
+                });
+            });
+            
+            // Initialize arrow button states
+            updateArrowButtons();
+        });
+
+            // Footer section navigation
+        const footerHomeLink = document.querySelector('.footer-home-link');
+        const footerSectionLinks = document.querySelectorAll('.footer-section-link');
+
+        // Home link functionality
+        footerHomeLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Hide all criteria sections
+            criteriaSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show CSE section
+            cseSection.style.display = 'block';
+            currentCriteriaIndex = -1;
+            
+            // Scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            
+            // Update arrow button states
+            updateArrowButtons();
+        });
+
+        // Section links functionality
+        footerSectionLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const targetSection = link.getAttribute('data-section');
+                
+                // Hide all criteria sections
+                criteriaSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show CSE section
+                cseSection.style.display = 'block';
+                currentCriteriaIndex = -1;
+                
+                // Scroll to the specific section
+                setTimeout(() => {
+                    const sections = {
+                        'video-tour': document.querySelector('.resource-category:nth-child(2)'),
+                        'sar': document.querySelector('.resource-category:nth-child(3)'),
+                        'presentation': document.querySelector('.resource-category:nth-child(4)'),
+                        'course-files': document.querySelector('.resource-category:nth-child(5)'),
+                        'time-table': document.querySelector('.resource-category:nth-child(6)'),
+                        'faculty-list': document.querySelector('.resource-category:nth-child(7)'),
+                        'student-list': document.querySelector('.resource-category:nth-child(8)'),
+                        'placement': document.querySelector('.resource-category:nth-child(9)'),
+                        'curriculum': document.querySelector('.resource-category:nth-child(10)'),
+                        'nba-accreditation': document.querySelector('.resource-category:nth-child(11)'),
+                        'backlogs': document.querySelector('.resource-category:nth-child(12)'),
+                        'research-papers': document.querySelector('.resource-category:nth-child(13)'),
+                        'research-projects': document.querySelector('.resource-category:nth-child(14)'),
+                        'consultancy': document.querySelector('.resource-category:nth-child(15)'),
+                        'audit-reports': document.querySelector('.resource-category:nth-child(16)'),
+                        'obe': document.querySelector('.resource-category:nth-child(17)')
+                    };
+                    
+                    if (sections[targetSection]) {
+                        window.scrollTo({
+                            top: sections[targetSection].offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 100);
+                
+                // Update arrow button states
+                updateArrowButtons();
+            });
+        });
+    </script>
+</body>
+</html>
